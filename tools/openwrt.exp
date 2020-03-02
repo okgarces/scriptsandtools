@@ -1,0 +1,10 @@
+#!/usr/bin/expect
+spawn ssh root@192.168.1.1
+expect "password:"
+send "\r"
+expect *
+send "cat /proc/net/wireless\r"
+set results $expect_out(buffer)
+send "exit\r"
+expect eof
+puts $results
